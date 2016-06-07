@@ -28,38 +28,37 @@ var cards = [
   }
 ];
 $(document).on("keydown", function(e){
-  console.log(currentCardIndex)
   if (e.keyCode == '39'){ // Right arrow
-    currentCardIndex += 1;
-    $(".flashCards").html(cards[currentCardIndex].question);
-    // currentCardIndex.next().html(cards[i].question);
+    if (currentCardIndex < cards.length - 1){
+      currentCardIndex += 1;
+      displayQuestion();
+    }
+    else{
+      return false;
+    }
   }else if (e.keyCode == '37'){ // Left arrow
+    if (currentCardIndex > 0){
     currentCardIndex -= 1;
-    $(".flashCards").html(cards[currentCardIndex].question);
-  };
+    displayQuestion();
+    }
+    else{
+      return false;
+    }
+  }  
 });
 
 $("#revealButton").on("click", function(){
-  $(".flashCards").html(cards[currentCardIndex].answer);
+  $(".flashCard").html(cards[currentCardIndex].answer);
 })
 
-//     var cardIndex = $("cards[i]");
-//     var keycode = (event.keyCode ? event.keyCode : event.which);
-//     if (e.keyCode == '39'){
-//       cardIndex.next().html(cards[i].question);
-//     }else if (e.keyCode == '37'){
-//       cardIndex.prev().html(cards[i].question);
-//     };
-//     $(".flashCards").keypress(function(e){
-// }
 
-function displayFront(){
-  $(".flashCards").html(cards[0].question);
+function displayQuestion(){
+  $(".flashCard").html(cards[currentCardIndex].question);
 }
 
 
 
-displayFront();
+displayQuestion();
 
 
 
