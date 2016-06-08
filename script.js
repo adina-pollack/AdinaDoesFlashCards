@@ -21,12 +21,12 @@ $(document).ready(function(){
       answer:"36"
     },
     {
-      question:"What is 7 x 8?",
-      answer:"56"
-    },
-    {
       question:"Find the derivative of <br>y = 2x^3 - 4x^2 + 3x - 5",
       answer:"6x^2-8x+3"
+    },
+    {
+      question:"What is 7 x 8?",
+      answer:"56"
     }
   ];
 
