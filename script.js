@@ -118,6 +118,8 @@ $(document).ready(function(){
         alert("Correct! Game over!");
         window.clearInterval(timerId);
         clearInput();
+        numCorrect +=1;
+        updateCorrect();
       }
     }
     else{
