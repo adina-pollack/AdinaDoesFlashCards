@@ -4,6 +4,7 @@ $(document).ready(function(){
   var seconds = 0;
   var start = $("#start");
   var userGuess;
+  var arrowKeys = 0;
   var cards = [
     {
       question:"What is 4 + 5?",
@@ -46,12 +47,21 @@ $(document).ready(function(){
     timerId = window.setInterval(updateTime, 1000);
   }
 
-  $(document).on("keydown", function(e){
+  function clearInput(){
+    $(".input").val(" ");
+  }
+
+  $(document).on("keydown", function test(e){
+    // var arrowKeys = 0;
     if (e.keyCode == '39'){ // Right arrow
       if (currentCardIndex < cards.length - 1){
         currentCardIndex += 1;
         displayQuestion();
       }
+      // else if (arrowKeys == 1){
+      //   currentCardIndex;
+      //   return;
+      // }
       else{
         return false;
       }
@@ -60,10 +70,18 @@ $(document).ready(function(){
         currentCardIndex -= 1;
         displayQuestion();
       }
+      // else if (arrowKeys == 1){
+      //   currentCardIndex;
+      //   return;
+      // }
       else{
         return false;
       }
     }
+    start.on("click", function(){
+
+      arrowKeys = 1;
+    });
   });
 
   displayQuestion();
@@ -77,26 +95,30 @@ $(document).ready(function(){
     $("#timer").css("visibility", "visible");
     $("#revealButton").css("visibility", "hidden");
     displayObjectOne();
-
   });
 
   start.on("click", startTimer);
 
   $("#guess").on("click", function(){
     var userGuess = $(".input").val();
-    if (currentCardIndex < cards.length){
-      alert("Correct!");
-      cards.splice(currentCardIndex, 1);
-      displayQuestion();
-    }
-    else if (cards.length == 0){
-      alert("Game Over!");
+    if (userGuess == cards[currentCardIndex].answer){
+      if (currentCardIndex < cards.length - 1){
+        alert("Correct!");
+        currentCardIndex += 1;
+        displayQuestion();
+        clearInput();
+      }
+      else if (currentCardIndex == cards.length - 1){
+        alert("Correct! Game over!");
+        window.clearInterval(timerId);
+      }
     }
     else{
       alert("Incorrect.");
       var splicedCard = cards.splice(currentCardIndex, 1);
       cards = cards.concat(splicedCard);
       displayQuestion();
+      clearInput();
     }
   });
 
