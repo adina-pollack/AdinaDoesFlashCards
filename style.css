@@ -11,50 +11,93 @@
   box-sizing: border-box;
 }
 
-html, body{
-  width:100%;
+html{
+  background-image: url("LightningBolt.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body{
+  width: 100%;
   margin:0 auto;
+  padding-left: 40px;
+  padding-top: 20px;
   font-family: 'Oxygen', sans-serif;
+  color: white;
+  /*text-shadow: 0.5px 0.5px 0px #fff;*/
 }
 
 h1{
-  font-size: 40px;
-
+  font-size: 50px;
+  font-weight: bold;
 }
-.cardReview{
-  width: 600px;
+
+h2{
+  padding-top: 35px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+ul{
+  padding-top: 5px;
+  padding-bottom: 10px;
+  font-size: 18px;
+}
+
+strong{
+  font-weight: bold;
+}
+
+.hero{
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
   display:flex;
+  flex-direction:row;
   justify-content: center;
+  text-align: center;
 }
 
 .flashCard{
   width: 400px;
   height:250px;
-  /*margin-left: auto;
-  margin-right: auto;*/
-  border: 10px solid blue;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid grey;
   background-color: #ffffff;
+  background-image: url("blankcard.png");
+  color: black;
   padding-top: 100px;
   text-align:center;
   font-size: 25px;
 }
 
 .button{
+  background-color: #ff0066;
   width: 100px;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
   margin-right: auto;
   margin-left: auto;
-  border: 3px solid black;
+  border: 0.5px solid white;
   border-radius: 10%;
   font-size: 25px;
   height: 40px;
 }
 
+#scoreBoard{
+  visibility: hidden;
+  margin-right: 40px;
+  margin-top: 100px;
+  font-size: 30px;
+  font-family: 'Roboto Mono', sans-serif;
+}
 
+#revealButton{
+  margin-left: 10px;
+  margin-top: 100px;
+}
 
 .input{
   width: 200px;
@@ -64,22 +107,22 @@ h1{
 
 .userInput{
   visibility: hidden;
-  /*background-color: #E3E3E3;*/
-  /*border: 1px solid #676767;*/
-  /*border-radius: 15px;*/
-  font-size: 30px;
+  border-radius: 15px;
+  font-size: 25px;
   padding-left: 18px;
-  width: 350px;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
-  /*text-align: center;*/
+  text-align: center;
 }
 #timer{
   visibility: hidden;
-  width: 100px;
+  width: 225px;
   text-align: center;
-  margin-right: auto;
-  margin-left: auto;
+  float: right;
   border-radius: 10%;
-  font-size: 35px;
+  font-size: 25px;
+  color: #ff0066;
+  font-weight: 500;
+  margin-right: 40px;
 }
