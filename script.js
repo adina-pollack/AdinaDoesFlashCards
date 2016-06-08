@@ -3,7 +3,7 @@ $(document).ready(function(){
   var flashCards = $(".flashCards");
   var seconds = 0;
   var start = $("#start");
-  var userGuess = $(".input").val();
+  var userGuess;
   var cards = [
     {
       question:"What is 4 + 5?",
@@ -18,16 +18,12 @@ $(document).ready(function(){
       answer:"36"
     },
     {
-      question:"What is 18 + 12?",
-      answer:"30"
-    },
-    {
       question:"What is 7 x 8?",
       answer:"56"
     },
     {
       question:"Find the derivative of y = 2x^3 - 4x^2 + 3x - 5",
-      answer:"6x^2 - 8x + 3"
+      answer:"6x^2-8x+3"
     }
   ];
 
@@ -35,9 +31,13 @@ $(document).ready(function(){
     $(".flashCard").html(cards[currentCardIndex].question);
   }
 
+  function displayObjectOne(){
+    $(".flashCard").html(cards[0].question);
+  }
+
   function updateTime(){
-    if (seconds <= 59){
-      seconds++;
+    if (cards.length > 0){
+        seconds++;
     }
     $("#timer").text(seconds);
   }
@@ -73,17 +73,30 @@ $(document).ready(function(){
   })
 
   start.on("click", function(){
-    $(".input").css("visibility", "visible");
+    $(".userInput").css("visibility", "visible");
     $("#timer").css("visibility", "visible");
-    $("#guess").css("visibility", "visible")
+    $("#revealButton").css("visibility", "hidden");
+    displayObjectOne();
+
   });
 
   start.on("click", startTimer);
 
   $("#guess").on("click", function(){
-    if (userGuess == cards[currentCardIndex].answer){
+    var userGuess = $(".input").val();
+    if (currentCardIndex < cards.length){
       alert("Correct!");
-      // cards.splice(currentCardIndex, 1)
+      cards.splice(currentCardIndex, 1);
+      displayQuestion();
+    }
+    else if (cards.length == 0){
+      alert("Game Over!");
+    }
+    else{
+      alert("Incorrect.");
+      var splicedCard = cards.splice(currentCardIndex, 1);
+      cards = cards.concat(splicedCard);
+      displayQuestion();
     }
   });
 
