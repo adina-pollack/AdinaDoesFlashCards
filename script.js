@@ -130,7 +130,6 @@ $(document).ready(function(){
     var userGuess = $(".input").val();
     if (userGuess == cards[currentCardIndex].answer){
       if (currentCardIndex < cards.length - 1){
-        // $("#flashCard").css("background-color", "#00ff00");
         alert("Correct!");
         currentCardIndex += 1;
         displayQuestion();

@@ -8,6 +8,7 @@
 - User should be able to see how long it takes to answer all questions correctly.
 
 ## Technologies Used
+- jquery, css, html
 - on.click event listeners used to attribute css, start the timer, prevent scrolling through cards, compare user input to answers and move to the next card.
 - on.keydown event listeners used to scroll the cards left/right.
 - Function declarations used for timer setup, for specifying what text to appear on the page, for specifying the current index in the array, input value, etc. to be called later.
