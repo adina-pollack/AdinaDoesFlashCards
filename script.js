@@ -81,49 +81,72 @@ $(document).ready(function(){
     window.clearInterval(timerId)
     seconds = 0;
   }
+
+  function startVisibility(){
+    $(".userInput").css("visibility", "visible");
+    $("#timer").css("visibility", "visible");
+    $("#revealButton").css("visibility", "hidden");
+    $("#scoreBoard").css("visibility", "visible");
+  }
+
+  function playAgainVisibility(){
+    $(".userInput").css("visibility", "hidden");
+    $("#timer").css("visibility", "hidden");
+    $("#revealButton").css("visibility", "visible");
+    $("#scoreBoard").css("visibility", "hidden");
+    $("#playAgain").css("visibility", "hidden");
+  }
+
+  function playAgain (){
+    $("#playAgain").on("click", function(){
+      playAgainVisibility();
+      displayObjectOne();
+      gameHasStarted = false;
+      resetTimer();
+      resetCorrect();
+    })
+  }
+
+  function correct(){
+    alert("Correct!");
+    currentCardIndex += 1;
+    displayQuestion();
+    clearInput();
+    numCorrect += 1;
+    updateCorrect();
+  }
+
+  function incorrect(){
+    alert("Incorrect.");
+    var splicedCard = cards.splice(currentCardIndex, 1);
+    cards = cards.concat(splicedCard);
+    displayQuestion();
+    clearInput();
+  }
+
+  function gameOver(){
+    alert("Correct! Game over!");
+    window.clearInterval(timerId);
+    clearInput();
+    numCorrect +=1;
+    updateCorrect();
+    $("#playAgain").css("visibility", "visible");
+    playAgain();
+  }
   
   function checkAnswer(){
     var userGuess = $(".input").val();
     if (userGuess == cards[currentCardIndex].answer){
       if (currentCardIndex < cards.length - 1){
-        alert("Correct!");
-        currentCardIndex += 1;
-        displayQuestion();
-        clearInput();
-        numCorrect += 1;
-        updateCorrect();
+        correct();
       }
       else if (currentCardIndex == cards.length - 1){
-        alert("Correct! Game over!");
-        window.clearInterval(timerId);
-        clearInput();
-        numCorrect +=1;
-        updateCorrect();
-        $("#playAgain").css("visibility", "visible");
-        playAgain();
+        gameOver();
       }
     }
     else{
-      alert("Incorrect.");
-      var splicedCard = cards.splice(currentCardIndex, 1);
-      cards = cards.concat(splicedCard);
-      displayQuestion();
-      clearInput();
+      incorrect();
     }
-  }
-
-  function playAgain (){
-    $("#playAgain").on("click", function(){
-      $(".userInput").css("visibility", "hidden");
-      $("#timer").css("visibility", "hidden");
-      $("#revealButton").css("visibility", "visible");
-      $("#scoreBoard").css("visibility", "hidden");
-      displayObjectOne();
-      gameHasStarted = false;
-      resetTimer();
-      resetCorrect();
-      $("#playAgain").css("visibility", "hidden")
-    })
   }
 
   $(document).on("keydown", function test(e){
@@ -154,10 +177,7 @@ $(document).ready(function(){
   })
 
   start.on("click", function(){
-    $(".userInput").css("visibility", "visible");
-    $("#timer").css("visibility", "visible");
-    $("#revealButton").css("visibility", "hidden");
-    $("#scoreBoard").css("visibility", "visible");
+    startVisibility();
     displayObjectOne();
     startTimer();
     gameHasStarted = true;
@@ -169,34 +189,4 @@ $(document).ready(function(){
       checkAnswer();
     };
   });
-
-  function checkAnswer(){
-    var userGuess = $(".input").val();
-    if (userGuess == cards[currentCardIndex].answer){
-      if (currentCardIndex < cards.length - 1){
-        alert("Correct!");
-        currentCardIndex += 1;
-        displayQuestion();
-        clearInput();
-        numCorrect += 1;
-        updateCorrect();
-      }
-      else if (currentCardIndex == cards.length - 1){
-        alert("Correct! Game over!");
-        window.clearInterval(timerId);
-        clearInput();
-        numCorrect +=1;
-        updateCorrect();
-        $("#playAgain").css("visibility", "visible");
-        playAgain();
-      }
-    }
-    else{
-      alert("Incorrect.");
-      var splicedCard = cards.splice(currentCardIndex, 1);
-      cards = cards.concat(splicedCard);
-      displayQuestion();
-      clearInput();
-    }
-  }
 });
