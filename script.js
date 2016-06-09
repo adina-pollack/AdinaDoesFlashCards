@@ -70,9 +70,46 @@ $(document).ready(function(){
     $(".input").val("");
   }
 
+  function enterKey(e){
+    console.log(e.keyCode);
+    if(e.keyCode == '13'){
+      return true;
+    }
+  };
+
   function resetTimer(){
     window.clearInterval(timerId)
     seconds = 0;
+  }
+  
+  function checkAnswer(){
+    var userGuess = $(".input").val();
+    if (userGuess == cards[currentCardIndex].answer){
+      if (currentCardIndex < cards.length - 1){
+        alert("Correct!");
+        currentCardIndex += 1;
+        displayQuestion();
+        clearInput();
+        numCorrect += 1;
+        updateCorrect();
+      }
+      else if (currentCardIndex == cards.length - 1){
+        alert("Correct! Game over!");
+        window.clearInterval(timerId);
+        clearInput();
+        numCorrect +=1;
+        updateCorrect();
+        $("#playAgain").css("visibility", "visible");
+        playAgain();
+      }
+    }
+    else{
+      alert("Incorrect.");
+      var splicedCard = cards.splice(currentCardIndex, 1);
+      cards = cards.concat(splicedCard);
+      displayQuestion();
+      clearInput();
+    }
   }
 
   function playAgain (){
@@ -108,7 +145,7 @@ $(document).ready(function(){
         return false;
       }
     }
-    });
+  });
 
   displayQuestion();
 
@@ -126,7 +163,14 @@ $(document).ready(function(){
     gameHasStarted = true;
   });
 
-  $("#guess").on("click", function(){
+  $("#guess").on("click", checkAnswer);
+  $(".userInput").keypress(function(e){
+    if (enterKey(e)){
+      checkAnswer();
+    };
+  });
+
+  function checkAnswer(){
     var userGuess = $(".input").val();
     if (userGuess == cards[currentCardIndex].answer){
       if (currentCardIndex < cards.length - 1){
@@ -154,5 +198,5 @@ $(document).ready(function(){
       displayQuestion();
       clearInput();
     }
-  });
+  }
 });
