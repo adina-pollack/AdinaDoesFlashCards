@@ -18,3 +18,6 @@
 
 ## Approach
 I approached this project by first thinking about the actual point of flashcards. From there I thought about how that could translate online. I started small, piece by piece making sure things worked and adding more functionality as I went. Once I had the functionality I wanted, I worked on the design aspects and thought about what else I could do to add value.
+
+## Installation instructions
+- Go to http://adina-pollack.github.io/AdinaDoesFlashCards/ and follow posted instructions.
