@@ -50,7 +50,7 @@ strong{
 }
 
 .hero{
-  width: 100%;
+  width: 80%;
   margin-right: auto;
   margin-left: auto;
   display:flex;
@@ -126,5 +126,9 @@ strong{
   font-size: 25px;
   color: #ff0066;
   font-weight: 500;
-  margin-right: 40px;
+  margin-right: 100px;
+}
+#playAgain{
+  visibility: hidden;
+  width: 250px;
 }

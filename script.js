@@ -61,8 +61,32 @@ $(document).ready(function(){
     $("#scoreBoard").text("Correct: " + numCorrect);
   }
 
+  function resetCorrect(){
+    numCorrect = 0;
+    $("#scoreBoard").text("Correct: " + numCorrect);
+  }
+
   function clearInput(){
     $(".input").val("");
+  }
+
+  function resetTimer(){
+    window.clearInterval(timerId)
+    seconds = 0;
+  }
+
+  function playAgain (){
+    $("#playAgain").on("click", function(){
+      $(".userInput").css("visibility", "hidden");
+      $("#timer").css("visibility", "hidden");
+      $("#revealButton").css("visibility", "visible");
+      $("#scoreBoard").css("visibility", "hidden");
+      displayObjectOne();
+      gameHasStarted = false;
+      resetTimer();
+      resetCorrect();
+      $("#playAgain").css("visibility", "hidden")
+    })
   }
 
   $(document).on("keydown", function test(e){
@@ -120,6 +144,8 @@ $(document).ready(function(){
         clearInput();
         numCorrect +=1;
         updateCorrect();
+        $("#playAgain").css("visibility", "visible");
+        playAgain();
       }
     }
     else{
