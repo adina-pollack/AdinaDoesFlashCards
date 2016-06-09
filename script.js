@@ -133,7 +133,7 @@ $(document).ready(function(){
     $("#playAgain").css("visibility", "visible");
     playAgain();
   }
-  
+
   function checkAnswer(){
     var userGuess = $(".input").val();
     if (userGuess == cards[currentCardIndex].answer){
@@ -173,7 +173,7 @@ $(document).ready(function(){
   displayQuestion();
 
   $("#revealButton").on("click", function(){
-    $(".flashCard").html(cards[currentCardIndex].answer);
+    $(".flashCard").html("The answer is: <br>" + cards[currentCardIndex].answer);
   })
 
   start.on("click", function(){
