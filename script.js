@@ -173,7 +173,7 @@ $(document).ready(function(){
   displayQuestion();
 
   $("#revealButton").on("click", function(){
-    $(".flashCard").html("The answer is: <br>" + cards[currentCardIndex].answer);
+    $(".flashCard").html("Answer: <br>" + cards[currentCardIndex].answer);
   })
 
   start.on("click", function(){
