@@ -80,6 +80,7 @@ $(document).ready(function(){
   function resetTimer(){
     window.clearInterval(timerId)
     seconds = 0;
+    minutes = 0;
   }
 
   function startVisibility(){
